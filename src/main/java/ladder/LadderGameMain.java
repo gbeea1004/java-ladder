@@ -1,4 +1,4 @@
-package Ladder;
+package ladder;
 
 public class LadderGameMain {
     public static void main(String[] args) {

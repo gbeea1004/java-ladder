@@ -1,4 +1,4 @@
-package Ladder;
+package ladder;
 
 public class ResultView {
     static final char HLINE = '-';
