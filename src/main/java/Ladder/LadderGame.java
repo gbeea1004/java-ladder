@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LadderGame {
-    ArrayList<String> list = new ArrayList();
+    ArrayList<Character> list = new ArrayList();
 
-    public String createLine(){
+    public char createHLine(){
         Random isLine = new Random();
-        if(isLine.nextBoolean())
-            return "-";
-        else
-            return " ";
+        if(isLine.nextBoolean()){
+            return ResultView.HLINE;
+        }
+        return ResultView.NULL;
     }
 
     public void createRadder(int persons, int radderH){
@@ -22,11 +22,16 @@ public class LadderGame {
 
     private void listAdd(int persons) {
         for (int j = 0; j < persons; j++) {
-            list.add("|");
-            if(j == (persons - 1)){
-                break;
-            }
-            list.add(createLine());
+            list.add(ResultView.VLINE);
+            if (lineComplete(persons, j)) break;
+            list.add(createHLine());
         }
+    }
+
+    private boolean lineComplete(int persons, int j) {
+        if(j == (persons - 1)){
+            return true;
+        }
+        return false;
     }
 }
