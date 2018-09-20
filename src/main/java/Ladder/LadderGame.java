@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LadderGame {
-    ArrayList<Character> list = new ArrayList();
+    ArrayList<Character> ladderParts = new ArrayList();
 
     public char createHLine(){
         Random isLine = new Random();
@@ -22,9 +22,11 @@ public class LadderGame {
 
     private void listAdd(int persons) {
         for (int j = 0; j < persons; j++) {
-            list.add(ResultView.VLINE);
-            if (lineComplete(persons, j)) break;
-            list.add(createHLine());
+            ladderParts.add(ResultView.VLINE);
+            if (lineComplete(persons, j)){
+                break;
+            }
+            ladderParts.add(createHLine());
         }
     }
 

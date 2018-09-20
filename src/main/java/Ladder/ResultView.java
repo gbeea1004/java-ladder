@@ -6,8 +6,8 @@ public class ResultView {
     static final char NULL = ' ';
 
     public static void print(LadderGame game, int persons){
-        for (int i = 0; i < game.list.size(); i++) {
-            System.out.print(game.list.get(i));
+        for (int i = 0; i < game.ladderParts.size(); i++) {
+            System.out.print(game.ladderParts.get(i));
             lineFeed(persons, i);
         }
     }
