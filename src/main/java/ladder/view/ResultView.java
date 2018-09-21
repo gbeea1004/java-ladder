@@ -1,4 +1,6 @@
-package ladder;
+package ladder.view;
+
+import ladder.domain.LadderGame;
 
 public class ResultView {
     static final String HLINE = "-----";

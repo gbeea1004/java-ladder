@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,11 +20,7 @@ public class Line {
     }
 
     public boolean createHLine() {
-        Random isLine = new Random();
-        if (isLine.nextBoolean()) {
-            return true;
-        }
-        return false;
+        return new Random().nextBoolean();
     }
 
     public void overlapCheck(int index) {
@@ -32,22 +28,7 @@ public class Line {
         boolean currentValue = points.get(index);
 
         if (preValue == true && currentValue == true) {
-            Random random = new Random();
-            boolean randomDelete = random.nextBoolean();
-            currentValueDelete(index, randomDelete);
-            preValueDelete(index, randomDelete);
-        }
-    }
-
-    public void preValueDelete(int index, boolean randomDelete) {
-        if(randomDelete == false){
-            points.set(index - 1, false);
-        }
-    }
-
-    public void currentValueDelete(int index, boolean randomDelete) {
-        if (randomDelete) {
-            points.set(index, false);
+            points.set(createHLine() ? index : index - 1, false);
         }
     }
 
