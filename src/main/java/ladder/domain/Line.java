@@ -13,17 +13,24 @@ public class Line {
         }
     }
 
-    public void overlap(int i) {
+    public Line(boolean[] personsTest){
+        for (int i = 0; i < personsTest.length -1; i++) {
+            points.add(createHLine());
+            overlap(i);
+        }
+    }
+
+    private void overlap(int i) {
         if (i > 0) {
             overlapCheck(i);
         }
     }
 
-    public boolean createHLine() {
+    private boolean createHLine() {
         return new Random().nextBoolean();
     }
 
-    public void overlapCheck(int index) {
+    private void overlapCheck(int index) {
         boolean preValue = points.get(index - 1);
         boolean currentValue = points.get(index);
 

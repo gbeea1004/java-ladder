@@ -1,12 +1,16 @@
 package ladder;
 
+import ladder.domain.LadderGame;
+import ladder.view.InputView;
+import ladder.view.ResultView;
+
 public class LadderGameMain {
     public static void main(String[] args) {
-        int persons = InputView.inputPerson();
-        int radderH = InputView.inputRadderHeight();
+        String[] persons = InputView.inputPerson();
+        int ladderH = InputView.inputRadderHeight();
 
         LadderGame gamePlay = new LadderGame();
-        gamePlay.createRadder(persons, radderH);
-        ResultView.print(gamePlay, persons);
+        gamePlay.createRadder(persons.length, ladderH);
+        ResultView.print(gamePlay, persons, ladderH);
     }
 }
