@@ -2,11 +2,14 @@ package ladder;
 
 public class LadderGameMain {
     public static void main(String[] args) {
-        int persons = InputView.inputPerson();
+        String[] persons = InputView.inputPerson().split(",");
+        InputView.checkPersonName(persons);
         int radderH = InputView.inputRadderHeight();
 
         LadderGame gamePlay = new LadderGame();
-        gamePlay.createRadder(persons, radderH);
-        ResultView.print(gamePlay, persons);
+        gamePlay.createRadder(persons.length, radderH);
+        ResultView.print(gamePlay, persons, radderH);
     }
+
+
 }

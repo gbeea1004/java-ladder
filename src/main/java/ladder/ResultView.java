@@ -1,20 +1,43 @@
 package ladder;
 
 public class ResultView {
-    static final char HLINE = '-';
+    static final String HLINE = "-----";
     static final char VLINE = '|';
-    static final char NULL = ' ';
+    static final String NULL = "     ";
 
-    public static void print(LadderGame game, int persons){
-        for (int i = 0; i < game.ladderParts.size(); i++) {
-            System.out.print(game.ladderParts.get(i));
-            lineFeed(persons, i);
+    public static void print(LadderGame game, String[] persons, int ladderH){
+        outputPersonNames(persons);
+        for (int i = 0; i < ladderH; i++) {
+            makeOneLine(game, persons.length, i);
         }
     }
 
-    private static void lineFeed(int persons, int i) {
-        if((i + 1) % (persons * 2 - 1) == 0){
-            System.out.println();
+    private static void outputPersonNames(String[] persons) {
+        for (String person : persons) {
+            System.out.printf("%5s ", person);
         }
+        System.out.println();
+    }
+
+    private static void makeOneLine(LadderGame game, int persons, int i) {
+        System.out.print(NULL);
+        for (int j = 0; j < persons; j++) {
+            System.out.print(VLINE);
+            makeHLine(game, persons, i, j);
+        }
+        System.out.println();
+    }
+
+    private static void makeHLine(LadderGame game, int persons, int i, int j) {
+        if(j < persons - 1){
+            System.out.print(convertLine(game, i, j));
+        }
+    }
+
+    private static String convertLine(LadderGame game, int i, int j) {
+        if(game.getLine(i,j)){
+            return HLINE;
+        }
+        return NULL;
     }
 }

@@ -1,39 +1,17 @@
 package ladder;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class LadderGame {
-    ArrayList<Character> ladderParts = new ArrayList();
-
-    public char createHLine(){
-        Random isLine = new Random();
-        if(isLine.nextBoolean()){
-            return ResultView.HLINE;
-        }
-        return ResultView.NULL;
-    }
+    ArrayList<Line> ladderParts = new ArrayList();
 
     public void createRadder(int persons, int radderH){
         for (int i = 0; i < radderH; i++) {
-            listAdd(persons);
+            ladderParts.add(new Line(persons));
         }
     }
 
-    private void listAdd(int persons) {
-        for (int j = 0; j < persons; j++) {
-            ladderParts.add(ResultView.VLINE);
-            if (lineComplete(persons, j)){
-                break;
-            }
-            ladderParts.add(createHLine());
-        }
-    }
-
-    private boolean lineComplete(int persons, int j) {
-        if(j == (persons - 1)){
-            return true;
-        }
-        return false;
+    public boolean getLine(int x, int y) {
+        return (boolean) ladderParts.get(x).getLine().get(y);
     }
 }
