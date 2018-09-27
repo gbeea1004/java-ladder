@@ -39,7 +39,7 @@ public class Line {
         }
     }
 
-    public ArrayList getLine(){
+    public ArrayList<Boolean> getLine(){
         return points;
     }
 }
