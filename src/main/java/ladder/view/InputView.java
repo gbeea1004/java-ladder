@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.LadderGame;
 import java.util.Scanner;
 
 public class InputView {
@@ -22,14 +21,14 @@ public class InputView {
         return s.nextInt();
     }
 
-    public static String[] checkPersonName(String[] persons) {
+    private static String[] checkPersonName(String[] persons) {
         for (int i = 0; i < persons.length; i++) {
             i = personModified(persons, i);
         }
         return persons;
     }
 
-    public static String[] checkResult(String[] results, String[] persons){
+    private static String[] checkResult(String[] results, String[] persons){
         if(results.length > persons.length){
             System.out.println("실행 결과 값이 참여할 사람 수보다 많습니다. 사람 수에 맞게 다시 입력하세요.");
             results = inputResult(persons);
@@ -47,31 +46,8 @@ public class InputView {
         return i;
     }
 
-    public static String resultNameView(String[] persons, LadderGame game, String[] results){
+    public static String resultNameView(){
         System.out.println("결과를 보고 싶은 사람은?");
-        String resultName = s.next();
-        int index = -1;
-
-        if(resultName.equals("all")){
-            String result = "";
-            for (int i = 0; i < persons.length; i++) {
-                result += String.format(persons[i] + " : " + game.checkResult(i, results) + "%n");
-            }
-            return result;
-        }
-
-        for (int i = 0; i < persons.length; i++) {
-            if(persons[i].equals(resultName)){
-                index = i;
-                break;
-            }
-        }
-//        int index = Arrays.binarySearch(persons, resultName); // 두번째 인자의 값을 찾아 인덱스로 반환(이방법은 정렬이 되있어야 쓸수 있음)
-
-        if(index < 0){ // 존재하지 않은 값인 경우 마이너스 반환
-            System.out.println("찾으려는 사람을 정확하게 입력하세요.");
-            return resultNameView(persons, game, results);
-        }
-        return game.checkResult(index, results);
+        return s.next();
     }
 }

@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderGame;
+import ladder.domain.ResultOutput;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -14,7 +15,7 @@ public class LadderGameMain {
         gamePlay.createRadder(persons.length, ladderH);
         ResultView.print(gamePlay, persons, ladderH, results);
         while (true){
-            ResultView.resultName(InputView.resultNameView(persons, gamePlay, results));
+            ResultView.resultName(ResultOutput.resultCheck(persons, gamePlay, results, InputView.resultNameView()));
         }
     }
 }

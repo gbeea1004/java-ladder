@@ -45,7 +45,7 @@ public class ResultView {
     }
 
     private static String convertLine(LadderGame game, int i, int j) {
-        if(game.getLine(i,j)){
+        if(game.getLinePiece(i,j)){
             return HLINE;
         }
         return NULL;

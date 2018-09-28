@@ -15,7 +15,7 @@ public class Line {
 
     public Line(boolean[] personsTest){
         for (int i = 0; i < personsTest.length -1; i++) {
-            points.add(createHLine());
+            points.add(personsTest[i]);
             overlap(i);
         }
     }
@@ -39,7 +39,7 @@ public class Line {
         }
     }
 
-    public ArrayList<Boolean> getLine(){
-        return points;
+    public boolean value(int index){
+        return points.get(index);
     }
 }

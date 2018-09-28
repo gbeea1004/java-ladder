@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 
 public class LadderGame {
-    ArrayList<Line> ladderParts = new ArrayList();
+    private ArrayList<Line> ladderParts = new ArrayList();
 
     public void createRadder(int persons, int radderH) {
         for (int i = 0; i < radderH; i++) {
@@ -11,36 +11,36 @@ public class LadderGame {
         }
     }
 
-    public boolean getLine(int x, int y) {
-        return ladderParts.get(x).getLine().get(y);
+    public boolean getLinePiece(int x, int y) {
+        return ladderParts.get(x).value(y);
     }
 
-    public String checkResult(int pos, String[] results) {
+    public int getResultPos(int pos, String[] results) {
         for (int i = 0; i < ladderParts.size(); i++) {
-            if (pos == 0 && ladderParts.get(i).getLine().get(0)) {
-                pos++;
-//                System.out.println("pos 1단계 : " + pos);
-                continue;
-            }
-
-            if (pos > 0 && pos < results.length - 1 && ladderParts.get(i).getLine().get(pos - 1)) {
-                pos--;
-//                System.out.println("pos 2단계 : " + pos);
-                continue;
-            }
-
-            if (pos > 0 && pos < results.length - 1 && ladderParts.get(i).getLine().get(pos)) {
-                pos++;
-//                System.out.println("pos 3단계 : " + pos);
-                continue;
-            }
-
-            if (pos == results.length -1 && ladderParts.get(i).getLine().get(pos - 1)){
-                pos--;
-//                System.out.println("pos 4단계 : " + pos);
-            }
+            pos = posMove(pos, results, i);
         }
-//        System.out.println("********pos : " + pos);
-        return results[pos];
+        return pos;
+    }
+
+    public int posMove(int pos, String[] results, int i) {
+        if (pos == 0 && getLinePiece(i, 0)) {
+            pos++;
+            return pos;
+        }
+
+        if (pos > 0 && pos < results.length - 1 && getLinePiece(i, pos - 1)) {
+            pos--;
+            return pos;
+        }
+
+        if (pos > 0 && pos < results.length - 1 && getLinePiece(i, pos)) {
+            pos++;
+            return pos;
+        }
+
+        if (pos == results.length - 1 && getLinePiece(i, pos - 1)) {
+            pos--;
+        }
+        return pos;
     }
 }
